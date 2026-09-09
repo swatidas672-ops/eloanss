@@ -1,0 +1,5 @@
+# Cloudflare Pages SPA fallback.
+# React Router owns /loans, /about etc. in the browser; the server has no such
+# files. Serve index.html for anything that is not a real asset, with a 200 so
+# the URL is preserved (a 302 would rewrite the address bar).
+/*    /index.html   200

@@ -1,0 +1,17 @@
+{
+  // Cloudflare Workers static-assets deployment.
+  //
+  // This project deploys as a Worker serving the Vite build output, not as a
+  // classic Pages site. On that platform a `_redirects` catch-all of
+  // `/*  /index.html  200` is rejected as an infinite loop; SPA routing is
+  // configured here instead.
+  "name": "e-loanss",
+  "compatibility_date": "2026-09-09",
+  "assets": {
+    "directory": "./dist",
+    // Serves index.html (HTTP 200) for any path that is not a real file, so
+    // React Router can handle /loans, /about and the rest on a direct visit or
+    // a refresh. Replaces the _redirects rule.
+    "not_found_handling": "single-page-application"
+  }
+}

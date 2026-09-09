@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-page: #F8FAFC;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --border-subtle: rgba(226, 232, 240, 0.8);
+    --card-surface: rgba(255, 255, 255, 0.95);
+  }
+
+  .dark {
+    --bg-page: #070D1B;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --border-subtle: rgba(30, 58, 95, 0.35);
+    --card-surface: rgba(11, 21, 40, 0.75);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom futuristic scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #0D2138;
+  border-radius: 4px;
+  border: 1px solid rgba(14, 165, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+  border: 1px solid rgba(14, 165, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #168BFF;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0284C7;
+}
+
+/* Atmospheric Glow & Grid Utilities */
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(14, 165, 255, 0.15) 0%, rgba(6, 17, 31, 0) 70%);
+}
+
+.light .bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(14, 165, 255, 0.08) 0%, rgba(248, 250, 252, 0) 70%);
+}
+
+.bg-radial-cyan {
+  background: radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.12) 0%, rgba(7, 13, 27, 0) 60%);
+}
+
+.light .bg-radial-cyan {
+  background: radial-gradient(circle at 80% 20%, rgba(14, 165, 255, 0.07) 0%, rgba(248, 250, 252, 0) 60%);
+}
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+.light .bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(14, 165, 255, 0.15) 1px, transparent 1px);
+}
+
+.light .bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(14, 165, 255, 0.18) 1px, transparent 1px);
+}
+
+/* Glassmorphic Surfaces */
+.glass-panel {
+  background: rgba(11, 21, 40, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(100, 180, 255, 0.15);
+}
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(14, 30, 56, 0.85);
+  border-color: rgba(14, 165, 255, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(14, 165, 255, 0.25);
+}
+
+.light .glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(14, 165, 255, 0.4);
+  box-shadow: 0 12px 30px -8px rgba(14, 165, 255, 0.15);
+}
+
+.glass-card-subtle {
+  background: rgba(11, 21, 40, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.light .glass-card-subtle {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   Touch-device corrections. Scoped to coarse pointers so the desktop UI is
+   untouched.
+   --------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  /* iOS Safari zooms the whole page whenever a focused field is under 16px.
+     The app's fields are 12-14px, so every form triggered it. */
+  input:not([type='range']):not([type='checkbox']):not([type='radio']),
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Slider tracks are 8px tall, far below a comfortable touch target. Pad the
+     hit area vertically while keeping the track itself visually slim. */
+  input[type='range'] {
+    box-sizing: content-box;
+    padding-block: 0.625rem;
+    background-clip: content-box;
+  }
+}

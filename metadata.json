@@ -1,0 +1,8 @@
+{
+  "name": "Remix ELOANSS",
+  "description": "ELOANSS — Finance Beyond Today. Next-generation financial services platform for loans, insurance, investment advisory, distributor networks, and future financial ecosystems.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

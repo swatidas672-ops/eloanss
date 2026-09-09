@@ -6,3 +6,9 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Bun lockfile - this project uses npm (package-lock.json).
+# A stray bun.lock makes Cloudflare Pages run `bun install --frozen-lockfile`,
+# which fails on lockfile version mismatches.
+bun.lock
+bun.lockb

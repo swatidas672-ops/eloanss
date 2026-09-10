@@ -6,6 +6,7 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { PageHero } from '../components/layout/PageHero';
 import { 
+  AlertTriangle,
   ShieldCheck, 
   Cpu, 
   Lock, 
@@ -176,6 +177,21 @@ export const About: React.FC = () => {
               </Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Lending disclaimer */}
+      <section className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto mt-16">
+        <div className="flex items-start gap-3.5 p-5 rounded-2xl bg-amber-500/5 dark:bg-amber-500/10 border border-amber-500/30">
+          <AlertTriangle
+            className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5"
+            aria-hidden="true"
+          />
+          <p className="text-xs sm:text-[13px] text-slate-700 dark:text-[#C7D6E5] leading-relaxed">
+            Loans are subject to eligibility, documentation, credit approval, applicable terms,
+            conditions and bank policy. Interest rates, loan amounts and processing timelines may
+            vary based on the customer profile.
+          </p>
         </div>
       </section>
     </div>

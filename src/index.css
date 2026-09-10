@@ -177,4 +177,29 @@
     padding-block: 0.625rem;
     background-clip: content-box;
   }
+
+  /* Card CTAs render as small text rows - "Details & Eligibility" was only
+     16px tall, well under a comfortable finger target. Give buttons and
+     flex-laid-out links a minimum tappable height. Prose links inside
+     paragraphs are plain inline elements, which min-height does not affect,
+     so body copy is untouched. */
+  button,
+  a[class*="flex"] {
+    min-height: 40px;
+  }
+
+  /* Footer nav links sit at 15px and the pill-shaped category chips at 25px.
+     Both are the interactive element itself, not a wrapper, so they need real
+     height rather than more spacing around them. */
+  footer li > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+  }
+
+  a[class*="rounded-full"] {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+  }
 }

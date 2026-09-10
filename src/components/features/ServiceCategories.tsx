@@ -44,66 +44,68 @@ const iconFor = (key: ServiceIcon) => {
 
 export const ServiceCategories: React.FC = () => (
   <>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 text-left">
       {serviceCategories.map((cat) => (
-        <div
+        // The whole card is the link, so the entire surface is clickable rather
+        // than just the small CTA line at the bottom.
+        <Link
           key={cat.id}
-          className="group relative overflow-hidden rounded-2xl bg-white dark:bg-[#0A192B]/70 border border-slate-200/90 dark:border-[#64B4FF]/15 shadow-xs hover:border-sky-400/60 dark:hover:border-[#0EA5FF]/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col"
+          to={cat.cta.href}
+          aria-label={`${cat.title} - ${cat.cta.label}`}
+          className="group relative overflow-hidden rounded-2xl bg-white dark:bg-[#0A192B]/70 border border-slate-200/90 dark:border-[#64B4FF]/15 shadow-xs hover:border-sky-400/60 dark:hover:border-[#0EA5FF]/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col cursor-pointer"
         >
           {/* Photo sits on the right and is faded out behind the copy, so the
               card reads as illustrated rather than as an image with a caption. */}
           <img
             src={cat.image.src}
-            alt={cat.image.alt}
+            alt=""
+            aria-hidden="true"
             referrerPolicy="no-referrer"
             loading="lazy"
             className="pointer-events-none absolute right-0 top-0 h-full w-3/5 object-cover object-center opacity-90 group-hover:scale-105 transition-transform duration-700 ease-out"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white via-white/92 to-white/20 dark:from-[#0A192B] dark:via-[#0A192B]/92 dark:to-[#0A192B]/25" />
 
-          <div className="relative z-10 p-5 flex flex-col flex-1">
+          <div className="relative z-10 p-4 flex flex-col flex-1">
             <div
-              className={`w-11 h-11 rounded-xl bg-gradient-to-tr ${cat.accent} text-white flex items-center justify-center shadow-md mb-4`}
+              className={`w-9 h-9 rounded-lg bg-gradient-to-tr ${cat.accent} text-white flex items-center justify-center shadow-md mb-3`}
               aria-hidden="true"
             >
               {iconFor(cat.icon)}
             </div>
 
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display leading-snug">
+            <h3 className="text-[15px] font-bold text-slate-900 dark:text-white font-display leading-snug">
               {cat.title}
             </h3>
-            <p className="mt-1 text-[13px] text-slate-600 dark:text-[#A9BDD1] leading-relaxed max-w-[16rem]">
+            <p className="mt-0.5 text-[11px] text-slate-600 dark:text-[#A9BDD1] leading-relaxed max-w-[14rem]">
               {cat.subtitle}
             </p>
 
-            <ul className="mt-4 space-y-1.5 flex-1">
+            <ul className="mt-3 space-y-1 flex-1">
               {cat.items.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-[13px] text-slate-700 dark:text-[#C7D6E5]">
+                <li key={item} className="flex items-center gap-1.5 text-[12px] text-slate-700 dark:text-[#C7D6E5]">
                   <CheckCircle2
-                    className="w-3.5 h-3.5 text-sky-600 dark:text-cyan-400 shrink-0"
+                    className="w-3 h-3 text-sky-600 dark:text-cyan-400 shrink-0"
                     aria-hidden="true"
                   />
                   <span>{item}</span>
                 </li>
               ))}
-              <li className="flex items-center gap-2 text-[13px] text-slate-400 dark:text-slate-500">
-                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              <li className="flex items-center gap-1.5 text-[12px] text-slate-400 dark:text-slate-500">
+                <CheckCircle2 className="w-3 h-3 shrink-0" aria-hidden="true" />
                 <span>And more...</span>
               </li>
             </ul>
 
-            <Link
-              to={cat.cta.href}
-              className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800/80 inline-flex items-center gap-1.5 text-[13px] font-semibold text-sky-700 dark:text-cyan-300 hover:text-sky-900 dark:hover:text-white transition-colors"
-            >
+            <span className="mt-3 pt-2.5 border-t border-slate-200 dark:border-slate-800/80 inline-flex items-center gap-1.5 text-[12px] font-semibold text-sky-700 dark:text-cyan-300 group-hover:text-sky-900 dark:group-hover:text-white transition-colors">
               {cat.cta.label}
               <ArrowRight
                 className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
                 aria-hidden="true"
               />
-            </Link>
+            </span>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
 

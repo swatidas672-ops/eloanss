@@ -3,6 +3,7 @@ import { loanProducts } from '../data/loans';
 import { heroImages } from '../data/heroImages';
 import { ProductCard } from '../components/features/ProductCard';
 import { ComparisonTable } from '../components/features/ComparisonTable';
+import { SpecializedFunding } from '../components/features/SpecializedFunding';
 import { EMICalculatorWidget } from '../components/features/EMICalculatorWidget';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { GlassCard } from '../components/ui/GlassCard';
@@ -205,6 +206,9 @@ export const Loans: React.FC<LoansPageProps> = ({ onOpenApply }) => {
           <EMICalculatorWidget onApply={() => onOpenApply('loan')} />
         </div>
       </section>
+
+      {/* Specialised sector, agriculture and property-backed programmes */}
+      <SpecializedFunding onOpenApply={onOpenApply} />
 
       {/* Standard Eligibility & Required Documents Matrix */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-16 border-t border-slate-200 dark:border-slate-800/80">

@@ -12,6 +12,7 @@ import { AIFinancialAssistant } from './components/features/AIFinancialAssistant
 import { Home } from './pages/Home';
 import { Loans } from './pages/Loans';
 import { LoanDetails } from './pages/LoanDetails';
+import { TradeBanking } from './pages/TradeBanking';
 import { Insurance } from './pages/Insurance';
 import { InsuranceDetails } from './pages/InsuranceDetails';
 import { Invest } from './pages/Invest';
@@ -70,6 +71,10 @@ export default function App() {
               <Route
                 path="/loans/:loanSlug"
                 element={<LoanDetails onOpenApply={(type, slug) => handleOpenApply('loan', slug)} />}
+              />
+              <Route
+                path="/trade-banking"
+                element={<TradeBanking onOpenApply={handleOpenApply} />}
               />
               <Route
                 path="/insurance"

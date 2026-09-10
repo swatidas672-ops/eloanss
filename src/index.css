@@ -202,4 +202,21 @@
     align-items: center;
     min-height: 32px;
   }
+
+  /* Standalone links that sit on their own line can take real height:
+     phone links anywhere, the footer bottom-bar row, and breadcrumb trails. */
+  a[href^='tel:'],
+  nav[aria-label='Breadcrumb'] a,
+  footer .flex.items-center.gap-6 > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+
+  /* Links sitting inside a sentence cannot take height without breaking the
+     line box. Vertical padding on an inline element expands its hit area
+     without moving the surrounding text. */
+  footer p a {
+    padding-block: 0.65rem;
+  }
 }

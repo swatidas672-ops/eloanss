@@ -19,7 +19,7 @@ export const WorkingCapitalFinance: React.FC<WorkingCapitalFinanceProps> = ({ on
       badge="WORKING CAPITAL & BUSINESS FINANCE"
       title="Funding That Moves"
       highlight="At Business Speed"
-      description="Fifteen facility types covering day-to-day liquidity, expansion capital and secured structures. Select any one to start an application with it pre-selected."
+      description="Fifteen facility types covering day-to-day liquidity, expansion capital and secured structures. Tell us your requirement and we will match it to the right facility."
       align="center"
     />
 

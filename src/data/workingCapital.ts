@@ -1,8 +1,8 @@
 // Working capital and business finance facilities shown on the home page.
 //
-// `slug` maps each item to a product in loans.ts so the card can open the
-// application form already set to it. Items without a slug are descriptive
-// programmes rather than products to apply for, and render as plain cards.
+// These are descriptive facility types rather than individually applicable
+// products, so no item carries a slug and the component renders them as plain,
+// non-clickable cards. The section's own CTAs handle the enquiry.
 
 export interface WorkingCapitalItem {
   label: string;
@@ -10,19 +10,19 @@ export interface WorkingCapitalItem {
 }
 
 export const workingCapitalItems: WorkingCapitalItem[] = [
-  { label: 'Cash Credit (CC)', slug: 'od-loan' },
-  { label: 'Overdraft (OD)', slug: 'od-loan' },
-  { label: 'Working Capital Finance', slug: 'od-loan' },
-  { label: 'Business Loans – Secured & Unsecured', slug: 'business-loan' },
-  { label: 'Term Loans', slug: 'business-loan' },
-  { label: 'Loan Against Property (LAP)', slug: 'mortgage-loan' },
-  { label: 'Machinery & Equipment Finance', slug: 'heavy-commercial-vehicle-loan' },
-  { label: 'Project & Infrastructure Finance', slug: 'project-loan' },
-  { label: 'CGTMSE / MSME Funding Solutions', slug: 'business-loan' },
-  { label: 'Cash-Flow Based Lending', slug: 'business-loan' },
-  { label: 'GST & Banking-Based Funding', slug: 'od-loan' },
-  { label: 'Business Expansion Finance', slug: 'business-loan' },
-  { label: 'Balance Transfer & Takeover', slug: 'business-loan' },
-  { label: 'Top-Up Funding', slug: 'business-loan' },
-  { label: 'Structured Business Finance', slug: 'project-loan' }
+  { label: 'Cash Credit (CC)' },
+  { label: 'Overdraft (OD)' },
+  { label: 'Working Capital Finance' },
+  { label: 'Business Loans – Secured & Unsecured' },
+  { label: 'Term Loans' },
+  { label: 'Loan Against Property (LAP)' },
+  { label: 'Machinery & Equipment Finance' },
+  { label: 'Project & Infrastructure Finance' },
+  { label: 'CGTMSE / MSME Funding Solutions' },
+  { label: 'Cash-Flow Based Lending' },
+  { label: 'GST & Banking-Based Funding' },
+  { label: 'Business Expansion Finance' },
+  { label: 'Balance Transfer & Takeover' },
+  { label: 'Top-Up Funding' },
+  { label: 'Structured Business Finance' }
 ];

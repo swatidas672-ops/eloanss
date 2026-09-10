@@ -27,6 +27,8 @@ import { ProductCard } from '../components/features/ProductCard';
 import { InsuranceCard } from '../components/features/InsuranceCard';
 import { IndiaNetworkVisual } from '../components/features/IndiaNetworkVisual';
 import { VideoModal } from '../components/features/VideoModal';
+import { Modal } from '../components/ui/Modal';
+import { CreditScoreChecker } from '../components/features/CreditScoreChecker';
 import { LiveMarketTicker } from '../components/features/LiveMarketTicker';
 import { EMICalculatorWidget } from '../components/features/EMICalculatorWidget';
 import { LendingPartners } from '../components/features/LendingPartners';
@@ -44,6 +46,7 @@ interface HomeProps {
 
 export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) => {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [scoreCheckerOpen, setScoreCheckerOpen] = useState(false);
 
   // Trust features
   const trustFeatures = [
@@ -281,11 +284,16 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
                   browser with no impact on your real score.
                 </p>
               </div>
-              <Link to="/calculator" className="shrink-0">
-                <Button variant="glow" size="lg" rightIcon={<ArrowRight className="w-4 h-4" />}>
+              <div className="shrink-0">
+                <Button
+                  variant="glow"
+                  size="lg"
+                  onClick={() => setScoreCheckerOpen(true)}
+                  rightIcon={<ArrowRight className="w-4 h-4" />}
+                >
                   Check My Score
                 </Button>
-              </Link>
+              </div>
             </div>
           </GlassCard>
         </div>
@@ -517,6 +525,22 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
 
       {/* Interactive Video Modal */}
       <VideoModal isOpen={videoModalOpen} onClose={() => setVideoModalOpen(false)} />
+
+      {/* Credit score checker, run without leaving the page */}
+      <Modal
+        isOpen={scoreCheckerOpen}
+        onClose={() => setScoreCheckerOpen(false)}
+        title="Credit Score Checker"
+        subtitle="An indicative estimate on the 300-900 scale. Nothing leaves your browser."
+        maxWidth="4xl"
+      >
+        <CreditScoreChecker
+          onOpenApply={(type, slug) => {
+            setScoreCheckerOpen(false);
+            onOpenApply(type, slug);
+          }}
+        />
+      </Modal>
     </div>
   );
 };

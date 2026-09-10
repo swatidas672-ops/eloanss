@@ -247,23 +247,23 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
           ))}
 
           {/* SPECIAL CARD: Need a Customized Solution? */}
-          <div className="relative rounded-2xl overflow-hidden p-8 flex flex-col justify-between bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 dark:from-[#0A192B] dark:via-[#0D2138] dark:to-[#168BFF]/40 border-2 border-dashed border-sky-400/50 shadow-lg text-left group">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center shadow-lg">
-                <Compass className="w-6 h-6" />
+          <div className="relative rounded-2xl overflow-hidden p-5 h-full flex flex-col justify-between bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 dark:from-[#0A192B] dark:via-[#0D2138] dark:to-[#168BFF]/40 border-2 border-dashed border-sky-400/50 shadow-lg text-left group">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center shadow-lg">
+                <Compass className="w-5 h-5" />
               </div>
               <Badge variant="cyan">BESPOKE ARCHITECTURE</Badge>
-              <h3 className="text-2xl font-bold text-white font-display group-hover:text-cyan-300 transition-colors">
+              <h3 className="text-base font-bold text-white font-display group-hover:text-cyan-300 transition-colors">
                 Need a Customized Solution?
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Have a complex multi-asset syndicate, large project loan requirement, or non-standard credit profile? Our senior financial engineers and underwriting specialists will architect a custom capital structure.
+              <p className="text-[13px] text-slate-300 leading-relaxed">
+                Complex multi-asset syndicates, large project requirements or non-standard credit profiles: our underwriting specialists will architect a custom structure.
               </p>
             </div>
 
-            <div className="pt-8">
+            <div className="pt-4">
               <Link to="/contact">
-                <Button variant="glow" size="md" className="w-full justify-center" rightIcon={<ArrowRight className="w-4 h-4" />}>
+                <Button variant="glow" size="sm" className="w-full justify-center" rightIcon={<ArrowRight className="w-4 h-4" />}>
                   Talk to an Expert →
                 </Button>
               </Link>

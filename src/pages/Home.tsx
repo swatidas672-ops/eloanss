@@ -237,7 +237,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
         </div>
 
         {/* 13 Loan Product Grid + Special Card */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {loanProducts.map((product) => (
             <ProductCard
               key={product.id}
@@ -319,7 +319,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
           description="Comprehensive risk mitigation for families, personal assets, and commercial enterprises with high verified claim settlement ratios."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {insuranceProducts.map((ins) => (
             <InsuranceCard
               key={ins.id}

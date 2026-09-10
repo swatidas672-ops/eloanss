@@ -30,6 +30,7 @@ import { VideoModal } from '../components/features/VideoModal';
 import { LiveMarketTicker } from '../components/features/LiveMarketTicker';
 import { EMICalculatorWidget } from '../components/features/EMICalculatorWidget';
 import { LendingPartners } from '../components/features/LendingPartners';
+import { WhyChooseUs } from '../components/features/WhyChooseUs';
 import { CustomerFeedback } from '../components/features/CustomerFeedback';
 import { loanProducts } from '../data/loans';
 import { insuranceProducts } from '../data/insurance';
@@ -68,38 +69,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
   ];
 
   // Why Choose ELOANSS
-  const whyFeatures = [
-    {
-      title: 'Wide Range of Products',
-      desc: '13 Specialized loan facilities, 8 insurance lines, wealth advisory, and global trade finance under one single roof.',
-      icon: <Layers className="w-6 h-6 text-sky-600 dark:text-cyan-400" />
-    },
-    {
-      title: 'Trusted Financial Partners',
-      desc: 'Direct algorithmic syndication with leading public & private banks, ensuring lowest sovereign interest spreads.',
-      icon: <Building2 className="w-6 h-6 text-sky-600 dark:text-sky-400" />
-    },
-    {
-      title: 'AI-Powered Guidance',
-      desc: 'Neural matching engines evaluate multi-lender credit criteria in milliseconds without hurting your CIBIL score.',
-      icon: <Cpu className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-    },
-    {
-      title: 'Global Opportunities',
-      desc: 'Cross-border business funding, export-import credit facilities, and international investment advisory.',
-      icon: <Globe2 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-    },
-    {
-      title: '100% Secure & Digital',
-      desc: 'Bank-grade 256-bit AES encryption, biometric vault integration, and zero physical paper handling required.',
-      icon: <ShieldCheck className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
-    },
-    {
-      title: 'Dedicated Support',
-      desc: 'Hybrid model pairing futuristic digital workflows with experienced local human distributor advisors.',
-      icon: <Users className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-    }
-  ];
 
   return (
     <div className="relative min-h-screen bg-slate-50 dark:bg-[#070D1B] text-slate-800 dark:text-[#E6F1FF] overflow-hidden transition-colors duration-300">
@@ -454,35 +423,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
       {/* ========================================================================= */}
       {/* 9. WHY CHOOSE ELOANSS */}
       {/* ========================================================================= */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-        <SectionHeading
-          badge="THE ELOANSS ADVANTAGE"
-          title="Why Choose ELOANSS"
-          highlight="Precision Fintech Engineered for 2035"
-          description="Built on a foundation of sovereign security, algorithmic matching, and a national network of accredited advisors."
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left">
-          {whyFeatures.map((feature, idx) => (
-            <GlassCard
-              key={idx}
-              hoverEffect
-              glow="blue"
-              className="p-7"
-            >
-              <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-[#06111F] border border-sky-400/30 flex items-center justify-center mb-5 shadow-inner">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white font-display">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-[#A9BDD1] mt-2.5 leading-relaxed">
-                {feature.desc}
-              </p>
-            </GlassCard>
-          ))}
-        </div>
-      </section>
+      <WhyChooseUs />
 
       {/* ========================================================================= */}
       {/* 10. STATISTICS */}

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Star, Quote, MapPin, ThumbsUp, Users, Building2, CheckCircle2 } from 'lucide-react';
+import { Star, Quote, MapPin, ThumbsUp, Users, Building2 } from 'lucide-react';
 import { GlassCard } from '../ui/GlassCard';
 import { SectionHeading } from '../ui/SectionHeading';
-import { testimonials, feedbackStats, whyChooseUs, type Testimonial } from '../../data/testimonials';
+import { testimonials, feedbackStats, type Testimonial } from '../../data/testimonials';
 
 const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
   <div className="flex items-center gap-0.5" aria-label={`${rating} out of 5 stars`}>
@@ -111,44 +111,9 @@ export const CustomerFeedback: React.FC = () => {
         ))}
       </div>
 
-      {/* Why choose us */}
-      <div className="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800/80">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-700 dark:text-cyan-300 text-xs font-semibold uppercase tracking-wider">
-            Why Choose Us
-          </div>
-          <h3 className="mt-4 text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
-            What you get working with us
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {whyChooseUs.map((point) => (
-            <div
-              key={point.label}
-              className="flex items-center gap-3 p-4 rounded-xl bg-white/75 dark:bg-[#0B1528]/60 border border-slate-200/90 dark:border-slate-800/80 shadow-xs backdrop-blur-md hover:border-sky-500/50 dark:hover:border-cyan-400/40 transition-colors"
-            >
-              <CheckCircle2
-                className="w-5 h-5 text-sky-600 dark:text-cyan-400 shrink-0"
-                aria-hidden="true"
-              />
-              <span className="text-sm font-semibold text-slate-800 dark:text-[#E6F1FF]">
-                {point.label}
-                {point.qualified && (
-                  <span className="text-sky-600 dark:text-cyan-400" aria-hidden="true">
-                    *
-                  </span>
-                )}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <p className="mt-8 text-center text-[11px] text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
         Names and locations are published with customer consent. Individual outcomes depend on
-        lender criteria and personal credit profile. *Pricing and turnaround times are indicative,
-        vary by lender and applicant profile, and are not guaranteed.
+        lender criteria and personal credit profile.
       </p>
     </section>
   );

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { loanProducts } from '../../data/loans';
 import { insuranceProducts } from '../../data/insurance';
-import { locationHierarchy, sampleDistributors } from '../../data/distributors';
+import { sampleDistributors } from '../../data/distributors';
+import { allStateNames, districtsOf, citiesOf } from '../../data/indiaLocations';
 import { Button } from '../ui/Button';
 import { Select } from '../ui/Select';
 import { Badge } from '../ui/Badge';
@@ -32,8 +33,8 @@ export const SmartFinancialFinder: React.FC<SmartFinancialFinderProps> = ({
   const [investGoal, setInvestGoal] = useState('wealth-creation');
   
   const [selectedState, setSelectedState] = useState('Maharashtra');
-  const [selectedDistrict, setSelectedDistrict] = useState('Mumbai Suburban');
-  const [selectedCity, setSelectedCity] = useState('Bandra Kurla Complex (BKC)');
+  const [selectedDistrict, setSelectedDistrict] = useState(districtsOf('Maharashtra')[0]);
+  const [selectedCity, setSelectedCity] = useState(citiesOf('Maharashtra', districtsOf('Maharashtra')[0])[0]);
   
   // Results & Loading
   const [isLoading, setIsLoading] = useState(false);
@@ -41,24 +42,20 @@ export const SmartFinancialFinder: React.FC<SmartFinancialFinderProps> = ({
   const [matchedDistributor, setMatchedDistributor] = useState<Distributor | null>(null);
 
   // Cascading location logic
-  const currentStateObj = locationHierarchy.find((s) => s.state === selectedState) || locationHierarchy[0];
-  const currentDistrictObj = currentStateObj.districts.find((d) => d.name === selectedDistrict) || currentStateObj.districts[0];
+  const currentDistricts = districtsOf(selectedState);
+  const currentCities = citiesOf(selectedState, selectedDistrict);
 
   const handleStateChange = (stateName: string) => {
     setSelectedState(stateName);
-    const stateObj = locationHierarchy.find((s) => s.state === stateName);
-    if (stateObj && stateObj.districts.length > 0) {
-      setSelectedDistrict(stateObj.districts[0].name);
-      setSelectedCity(stateObj.districts[0].cities[0] || '');
-    }
+    const districts = districtsOf(stateName);
+    const firstDistrict = districts[0] ?? '';
+    setSelectedDistrict(firstDistrict);
+    setSelectedCity(citiesOf(stateName, firstDistrict)[0] ?? '');
   };
 
   const handleDistrictChange = (districtName: string) => {
     setSelectedDistrict(districtName);
-    const distObj = currentStateObj.districts.find((d) => d.name === districtName);
-    if (distObj && distObj.cities.length > 0) {
-      setSelectedCity(distObj.cities[0]);
-    }
+    setSelectedCity(citiesOf(selectedState, districtName)[0] ?? '');
   };
 
   const handleFind = (e: React.FormEvent) => {
@@ -184,21 +181,21 @@ export const SmartFinancialFinder: React.FC<SmartFinancialFinderProps> = ({
             label="State"
             value={selectedState}
             onChange={(e) => handleStateChange(e.target.value)}
-            options={locationHierarchy.map((s) => ({ value: s.state, label: s.state }))}
+            options={allStateNames.map((name) => ({ value: name, label: name }))}
           />
 
           <Select
             label="District"
             value={selectedDistrict}
             onChange={(e) => handleDistrictChange(e.target.value)}
-            options={currentStateObj.districts.map((d) => ({ value: d.name, label: d.name }))}
+            options={currentDistricts.map((d) => ({ value: d, label: d }))}
           />
 
           <Select
             label="City / Hub"
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
-            options={currentDistrictObj.cities.map((c) => ({ value: c, label: c }))}
+            options={currentCities.map((c) => ({ value: c, label: c }))}
           />
         </div>
 

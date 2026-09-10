@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { sampleDistributors, locationHierarchy } from '../data/distributors';
+import { sampleDistributors } from '../data/distributors';
+import { allStateNames } from '../data/indiaLocations';
 import { heroImages } from '../data/heroImages';
 import { IndiaNetworkVisual } from '../components/features/IndiaNetworkVisual';
 import { GlassCard } from '../components/ui/GlassCard';
@@ -116,10 +117,10 @@ export const DistributorNetwork: React.FC = () => {
                 onChange={(e) => setSelectedState(e.target.value)}
                 className="w-full rounded-xl bg-slate-50 dark:bg-[#06111F] border border-slate-300 dark:border-slate-700 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 dark:focus:border-cyan-400 cursor-pointer"
               >
-                <option value="all">All States & Territories (28)</option>
-                {locationHierarchy.map((s) => (
-                  <option key={s.state} value={s.state}>
-                    {s.state}
+                <option value="all">All States & Territories ({allStateNames.length})</option>
+                {allStateNames.map((name) => (
+                  <option key={name} value={name}>
+                    {name}
                   </option>
                 ))}
               </select>

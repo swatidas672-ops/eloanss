@@ -18,46 +18,9 @@ import {
   Calculator
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ServiceCategories } from '../components/features/ServiceCategories';
 
 export const Services: React.FC = () => {
-  const fintechServices = [
-    {
-      title: 'Lending API Orchestration',
-      subtitle: 'Straight-Through Underwriting',
-      desc: 'Connect your business or retail portal directly to 50+ banking APIs. Automate applicant ingestion, credit scoring, and sanction generation.',
-      icon: <Cpu className="w-6 h-6 text-sky-600 dark:text-cyan-400" />
-    },
-    {
-      title: 'Insurance Integration Engine',
-      subtitle: 'Instant Quote & Policy Issuance',
-      desc: 'Seamlessly embed health, motor, life, and marine insurance checkout flows into e-commerce, logistics, and HR payroll applications.',
-      icon: <ShieldCheck className="w-6 h-6 text-sky-600 dark:text-sky-400" />
-    },
-    {
-      title: 'Decentralized Distributor CRM',
-      subtitle: 'Pan-India Operations Portal',
-      desc: 'Enterprise software suite for 1,500+ distributors with commission calculations, lead allocation, document digitization, and case tracking.',
-      icon: <Layers className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-    },
-    {
-      title: 'Bureau Analytics & Risk Modeling',
-      subtitle: 'Neural Credit Scoring',
-      desc: 'Deep learning models that assess non-traditional credit signals, GST returns, and banking cash flows for self-employed and MSME borrowers.',
-      icon: <Server className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-    },
-    {
-      title: 'White-Label Neo-Banking Suite',
-      subtitle: 'Turnkey Digital Finance',
-      desc: 'Complete branded front-end and back-end stack enabling corporate brands and financial institutions to launch co-branded credit products.',
-      icon: <Building2 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-    },
-    {
-      title: 'Automated NACH & Mandate Engine',
-      subtitle: 'Recurring Repayment Clearing',
-      desc: 'High-speed e-Mandate registration, NPCI integration, and automated recurring debit clearing with sub-percent failure rates.',
-      icon: <Zap className="w-6 h-6 text-sky-600 dark:text-cyan-400" />
-    }
-  ];
 
   return (
     <div className="bg-slate-50 dark:bg-[#070D1B] text-slate-800 dark:text-[#E6F1FF] min-h-screen transition-colors duration-300 pb-20">
@@ -95,29 +58,9 @@ export const Services: React.FC = () => {
         }}
       />
 
-      {/* Services Grid */}
+      {/* Service categories */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto -mt-6 relative z-20 mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-          {fintechServices.map((service, idx) => (
-            <GlassCard key={idx} hoverEffect glow="cyan" className="p-8 flex flex-col justify-between">
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-[#06111F] border border-slate-200 dark:border-cyan-400/30 flex items-center justify-center mb-5">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white font-display">{service.title}</h3>
-                <div className="text-xs text-sky-600 dark:text-cyan-300 font-mono font-semibold mt-1">{service.subtitle}</div>
-                <p className="text-xs text-slate-600 dark:text-[#A9BDD1] mt-3 leading-relaxed">{service.desc}</p>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800">
-                <Link to="/contact" className="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-cyan-300 flex items-center gap-1">
-                  <span>Inquire Enterprise Access</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </GlassCard>
-          ))}
-        </div>
+        <ServiceCategories />
       </section>
 
       {/* Developer API Preview Terminal */}

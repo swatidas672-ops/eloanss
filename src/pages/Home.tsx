@@ -99,12 +99,12 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
             src={homeHeroBackground}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-center opacity-[0.88] dark:opacity-100"
+            className="w-full h-full object-cover object-center opacity-[0.96] dark:opacity-100"
           />
           {/* Horizontal scrim keeps the headline readable over the artwork */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/70 to-slate-50/5 dark:from-[#070D1B] dark:via-[#070D1B]/85 dark:to-[#070D1B]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/50 to-transparent dark:from-[#070D1B] dark:via-[#070D1B]/85 dark:to-[#070D1B]/30" />
           {/* Vertical fade blends the backdrop into the page below */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-transparent to-slate-50 dark:from-[#070D1B] dark:via-transparent dark:to-[#070D1B]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-transparent to-slate-50 dark:from-[#070D1B] dark:via-transparent dark:to-[#070D1B]" />
         </div>
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">

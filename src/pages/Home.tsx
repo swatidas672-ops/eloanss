@@ -30,6 +30,7 @@ import { VideoModal } from '../components/features/VideoModal';
 import { LiveMarketTicker } from '../components/features/LiveMarketTicker';
 import { EMICalculatorWidget } from '../components/features/EMICalculatorWidget';
 import { LendingPartners } from '../components/features/LendingPartners';
+import { WorkingCapitalFinance } from '../components/features/WorkingCapitalFinance';
 import { WhyChooseUs } from '../components/features/WhyChooseUs';
 import { CustomerFeedback } from '../components/features/CustomerFeedback';
 import { loanProducts } from '../data/loans';
@@ -321,7 +322,12 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
       </section>
 
       {/* ========================================================================= */}
-      {/* 7. FIND LOCAL DISTRIBUTOR & INDIA NETWORK */}
+      {/* 7. WORKING CAPITAL & BUSINESS FINANCE */}
+      {/* ========================================================================= */}
+      <WorkingCapitalFinance onOpenApply={onOpenApply} />
+
+      {/* ========================================================================= */}
+      {/* 8. FIND LOCAL DISTRIBUTOR & INDIA NETWORK */}
       {/* ========================================================================= */}
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">

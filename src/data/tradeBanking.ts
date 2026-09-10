@@ -84,8 +84,8 @@ export const tradeFacilities: TradeFacility[] = [
 
 export const tradeBankingImages = {
   hero: {
-    src: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1200&auto=format&fit=crop',
-    alt: 'Container port stacked with freight, representing trade finance'
+    src: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1600&auto=format&fit=crop',
+    alt: 'Container ship being loaded by gantry cranes at a working port'
   },
   workingCapital: {
     src: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1200&auto=format&fit=crop',

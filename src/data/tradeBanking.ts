@@ -21,6 +21,8 @@ export interface TradeFacility {
   description: string;
   /** Loan product the application form should open on. */
   slug: string;
+  /** Card photo. Every URL below was checked for a 200 and viewed before use. */
+  image: { src: string; alt: string };
 }
 
 export const tradeFacilities: TradeFacility[] = [
@@ -30,7 +32,11 @@ export const tradeFacilities: TradeFacility[] = [
     icon: 'guarantee',
     description:
       'A bank undertaking to pay your counterparty if you cannot perform. Commonly demanded for tenders, performance bonds and security deposits.',
-    slug: 'business-loan'
+    slug: 'business-loan',
+    image: {
+      src: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop',
+      alt: 'Hands signing a formal undertaking on paper'
+    }
   },
   {
     id: 'letter-of-credit',
@@ -38,7 +44,11 @@ export const tradeFacilities: TradeFacility[] = [
     icon: 'letter',
     description:
       'Payment assured to your supplier once shipping documents are presented. Lets you buy on credit terms without the supplier carrying your risk.',
-    slug: 'business-loan'
+    slug: 'business-loan',
+    image: {
+      src: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=800&auto=format&fit=crop',
+      alt: 'Aerial view of a container port handling export freight'
+    }
   },
   {
     id: 'gst-based-od',
@@ -46,7 +56,11 @@ export const tradeFacilities: TradeFacility[] = [
     icon: 'gst',
     description:
       'An overdraft limit assessed on your filed GST turnover rather than on collateral, so declared sales become borrowing capacity.',
-    slug: 'od-loan'
+    slug: 'od-loan',
+    image: {
+      src: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop',
+      alt: 'Calculator resting on filed financial statements'
+    }
   },
   {
     id: 'pos-based-od',
@@ -54,7 +68,11 @@ export const tradeFacilities: TradeFacility[] = [
     icon: 'pos',
     description:
       'A limit sized on your card settlement volumes, repaid as a share of daily receipts. Suited to retail and hospitality counters.',
-    slug: 'od-loan'
+    slug: 'od-loan',
+    image: {
+      src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop',
+      alt: 'Customer paying by card at a retail counter'
+    }
   },
   {
     id: 'working-capital-limits',
@@ -62,7 +80,11 @@ export const tradeFacilities: TradeFacility[] = [
     icon: 'capital',
     description:
       'Cash credit and drawing power against stock and receivables, sized to your operating cycle so payroll and purchases stay funded.',
-    slug: 'od-loan'
+    slug: 'od-loan',
+    image: {
+      src: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop',
+      alt: 'Warehouse racking filled with packaged stock'
+    }
   },
   {
     id: 'cc-od-enhancement',
@@ -70,7 +92,11 @@ export const tradeFacilities: TradeFacility[] = [
     icon: 'enhance',
     description:
       'Raise an existing cash credit or overdraft limit as turnover grows, without unwinding the facility you already run.',
-    slug: 'od-loan'
+    slug: 'od-loan',
+    image: {
+      src: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop',
+      alt: 'Dashboard showing rising performance trend lines'
+    }
   },
   {
     id: 'takeover-balance-transfer',
@@ -78,14 +104,22 @@ export const tradeFacilities: TradeFacility[] = [
     icon: 'transfer',
     description:
       'Move an existing facility to a lender offering better pricing or higher limits, with the takeover handled end to end.',
-    slug: 'business-loan'
+    slug: 'business-loan',
+    image: {
+      src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop',
+      alt: 'Advisors reviewing existing facility terms together'
+    }
   }
 ];
 
 export const tradeBankingImages = {
   hero: {
     src: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Container ship being loaded by gantry cranes at a working port'
+    alt: 'Container ship being loaded by gantry cranes at a working port',
+    image: {
+      src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop',
+      alt: 'Advisors reviewing existing facility terms together'
+    }
   },
   workingCapital: {
     src: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1200&auto=format&fit=crop',

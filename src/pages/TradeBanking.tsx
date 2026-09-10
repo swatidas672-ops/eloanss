@@ -92,11 +92,23 @@ export const TradeBanking: React.FC<TradeBankingProps> = ({ onOpenApply }) => (
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {tradeFacilities.map((facility) => (
-          <GlassCard key={facility.id} hoverEffect glow="cyan" className="group p-6 flex flex-col h-full">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-500 to-cyan-400 text-white flex items-center justify-center shrink-0 shadow-md mb-4">
-              {iconFor(facility.icon)}
+          <GlassCard key={facility.id} hoverEffect glow="cyan" className="group overflow-hidden flex flex-col h-full">
+            {/* Photo banner with the icon badge straddling its lower edge */}
+            <div className="relative">
+              <img
+                src={facility.image.src}
+                alt={facility.image.alt}
+                referrerPolicy="no-referrer"
+                loading="lazy"
+                className="w-full h-40 object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute -bottom-6 left-6 w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-500 to-cyan-400 text-white flex items-center justify-center shadow-lg ring-4 ring-white dark:ring-[#0A192B]">
+                {iconFor(facility.icon)}
+              </div>
             </div>
 
+            <div className="p-6 pt-10 flex flex-col flex-1">
             <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display leading-snug">
               {facility.name}
             </h3>
@@ -113,6 +125,7 @@ export const TradeBanking: React.FC<TradeBankingProps> = ({ onOpenApply }) => (
               Enquire about {facility.name.replace(/\s*\(.*\)/, '')}
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
             </button>
+            </div>
           </GlassCard>
         ))}
       </div>

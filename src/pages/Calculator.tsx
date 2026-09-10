@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import { PageHero } from '../components/layout/PageHero';
 import { heroImages } from '../data/heroImages';
 import { GlassCard } from '../components/ui/GlassCard';
@@ -29,18 +28,6 @@ interface CalculatorProps {
 
 export const CalculatorPage: React.FC<CalculatorProps> = ({ onOpenApply }) => {
   const [activeTab, setActiveTab] = useState<'emi' | 'sip' | 'insurance' | 'credit'>('emi');
-  const { hash } = useLocation();
-
-  // ScrollToTop resets to 0 whenever the route changes, so a /calculator#eligibility
-  // link would land at the top. Re-scroll to the target once that has run.
-  useEffect(() => {
-    if (!hash) return;
-    const id = hash.slice(1);
-    const timer = window.setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 120);
-    return () => window.clearTimeout(timer);
-  }, [hash]);
 
   // EMI Calculator State
   const [loanAmount, setLoanAmount] = useState<number>(3500000);

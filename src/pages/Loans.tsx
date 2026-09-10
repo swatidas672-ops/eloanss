@@ -191,6 +191,9 @@ export const Loans: React.FC<LoansPageProps> = ({ onOpenApply }) => {
         )}
       </section>
 
+      {/* Specialised sector, agriculture and property-backed programmes */}
+      <SpecializedFunding onOpenApply={onOpenApply} />
+
       {/* Comparison System */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-16">
         <SectionHeading
@@ -206,9 +209,6 @@ export const Loans: React.FC<LoansPageProps> = ({ onOpenApply }) => {
           <EMICalculatorWidget onApply={() => onOpenApply('loan')} />
         </div>
       </section>
-
-      {/* Specialised sector, agriculture and property-backed programmes */}
-      <SpecializedFunding onOpenApply={onOpenApply} />
 
       {/* Standard Eligibility & Required Documents Matrix */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-16 border-t border-slate-200 dark:border-slate-800/80">

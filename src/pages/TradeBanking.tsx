@@ -32,7 +32,7 @@ interface TradeBankingProps {
 }
 
 const iconFor = (key: TradeIcon) => {
-  const cls = 'w-6 h-6';
+  const cls = 'w-5 h-5';
   switch (key) {
     case 'guarantee':
       return <ShieldCheck className={cls} />;
@@ -90,7 +90,7 @@ export const TradeBanking: React.FC<TradeBankingProps> = ({ onOpenApply }) => (
         align="center"
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {tradeFacilities.map((facility) => (
           <GlassCard key={facility.id} hoverEffect glow="cyan" className="group overflow-hidden flex flex-col h-full">
             {/* Photo banner with the icon badge straddling its lower edge */}
@@ -100,27 +100,27 @@ export const TradeBanking: React.FC<TradeBankingProps> = ({ onOpenApply }) => (
                 alt={facility.image.alt}
                 referrerPolicy="no-referrer"
                 loading="lazy"
-                className="w-full h-40 object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="w-full h-32 object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute -bottom-6 left-6 w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-500 to-cyan-400 text-white flex items-center justify-center shadow-lg ring-4 ring-white dark:ring-[#0A192B]">
+              <div className="absolute -bottom-5 left-5 w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-cyan-400 text-white flex items-center justify-center shadow-lg ring-4 ring-white dark:ring-[#0A192B]">
                 {iconFor(facility.icon)}
               </div>
             </div>
 
-            <div className="p-6 pt-10 flex flex-col flex-1">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display leading-snug">
+            <div className="p-5 pt-8 flex flex-col flex-1">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display leading-snug">
               {facility.name}
             </h3>
 
-            <p className="mt-2.5 text-sm text-slate-600 dark:text-[#A9BDD1] leading-relaxed flex-1">
+            <p className="mt-2 text-[13px] text-slate-600 dark:text-[#A9BDD1] leading-relaxed flex-1">
               {facility.description}
             </p>
 
             <button
               type="button"
               onClick={() => onOpenApply('loan', facility.slug)}
-              className="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 inline-flex items-center gap-1.5 text-xs font-semibold text-sky-700 dark:text-cyan-300 hover:text-sky-900 dark:hover:text-white transition-colors cursor-pointer"
+              className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800/80 inline-flex items-center gap-1.5 text-[11px] font-semibold text-sky-700 dark:text-cyan-300 hover:text-sky-900 dark:hover:text-white transition-colors cursor-pointer"
             >
               Enquire about {facility.name.replace(/\s*\(.*\)/, '')}
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />

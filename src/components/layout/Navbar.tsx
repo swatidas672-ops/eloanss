@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { mainNavItems } from '../../data/navigation';
+import eloanssLogo from '../../assets/brand/eloanss-logo.png';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -54,28 +55,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenApply, onOpenSearch }) => 
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* LEFT: ELOANSS Futuristic Brand Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0284C7] via-[#0EA5E9] to-[#06B6D4] dark:from-[#0EA5FF] dark:via-[#168BFF] dark:to-[#22D3EE] p-[1.5px] shadow-[0_0_15px_rgba(14,165,255,0.3)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.6)] transition-all">
-              <div className="w-full h-full bg-white dark:bg-[#020817] rounded-[10px] flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent pointer-events-none" />
-                <div className="flex items-center justify-center font-display font-extrabold text-lg tracking-tighter">
-                  <span className="text-sky-600 dark:text-cyan-400 group-hover:scale-110 transition-transform">E</span>
-                  <span className="text-cyan-500 dark:text-[#0EA5FF] -ml-0.5">L</span>
-                </div>
-                <div className="absolute bottom-1 w-4 h-[2px] bg-sky-500 dark:bg-cyan-400 rounded-full group-hover:w-6 transition-all duration-300" />
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <span className="font-display font-black text-xl sm:text-2xl tracking-wider text-slate-900 dark:text-white flex items-center">
-                ELOANSS
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-cyan-400 ml-1 shadow-[0_0_8px_#22D3EE]" />
-              </span>
-              <span className="text-[9px] font-mono tracking-widest text-sky-700 dark:text-cyan-300/80 uppercase -mt-0.5 font-semibold">
-                Finance Beyond Today
-              </span>
-            </div>
+          {/* LEFT: brand logo */}
+          <Link to="/" className="flex items-center group shrink-0" aria-label="ELOANSS home">
+            {/* The supplied artwork is dark type on white, so it needs a light
+                plaque to stay legible against the dark navy header. */}
+            <span className="inline-flex items-center rounded-xl bg-white px-2.5 py-1.5 shadow-xs ring-1 ring-slate-200/80 dark:ring-white/10 transition-shadow group-hover:shadow-md">
+              <img
+                src={eloanssLogo}
+                alt="ELOANSS - We Are Provide All Types of Loans"
+                className="h-8 sm:h-9 w-auto object-contain"
+              />
+            </span>
           </Link>
 
           {/* CENTER: Main Desktop Navigation */}

@@ -12,6 +12,7 @@ import {
   Calculator
 } from 'lucide-react';
 import { footerLoanLinks, footerInsuranceLinks, footerQuickLinks } from '../../data/navigation';
+import eloanssLogo from '../../assets/brand/eloanss-logo.png';
 
 export const Footer: React.FC = () => {
   return (
@@ -25,21 +26,14 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200 dark:border-slate-800/80">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0284C7] to-[#06B6D4] dark:from-[#0EA5FF] dark:to-[#22D3EE] p-[1.5px]">
-                <div className="w-full h-full bg-white dark:bg-[#020817] rounded-[10px] flex items-center justify-center font-display font-extrabold text-base">
-                  <span className="text-sky-600 dark:text-cyan-400">E</span>
-                  <span className="text-cyan-500 dark:text-[#0EA5FF] -ml-0.5">L</span>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display font-black text-xl tracking-wider text-slate-900 dark:text-white">
-                  ELOANSS
-                </span>
-                <span className="text-[9px] font-mono tracking-widest text-sky-700 dark:text-cyan-400 uppercase -mt-0.5 font-semibold">
-                  Finance Beyond Today
-                </span>
-              </div>
+            <Link to="/" className="inline-flex group" aria-label="ELOANSS home">
+              <span className="inline-flex items-center rounded-xl bg-white px-3 py-2 shadow-xs ring-1 ring-slate-200/80 dark:ring-white/10 transition-shadow group-hover:shadow-md">
+                <img
+                  src={eloanssLogo}
+                  alt="ELOANSS - We Are Provide All Types of Loans"
+                  className="h-9 w-auto object-contain"
+                />
+              </span>
             </Link>
 
             <p className="text-sm text-slate-600 dark:text-[#A9BDD1] leading-relaxed max-w-sm">

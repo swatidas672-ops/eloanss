@@ -1,20 +1,14 @@
 import React from 'react';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { heroImages } from '../data/heroImages';
-import { GlassCard } from '../components/ui/GlassCard';
 import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
 import { PageHero } from '../components/layout/PageHero';
 import { 
-  Cpu, 
-  Layers, 
+  Cpu,  
   ShieldCheck, 
   ArrowRight, 
-  Zap, 
-  Code, 
+  Zap,  
   Server, 
-  Building2,
-  Terminal,
   Calculator
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -61,47 +55,6 @@ export const Services: React.FC = () => {
       {/* Service categories */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto -mt-6 relative z-20 mb-16">
         <ServiceCategories />
-      </section>
-
-      {/* Developer API Preview Terminal */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-16">
-        <div className="rounded-3xl p-8 sm:p-12 bg-white dark:bg-[#081A2D]/90 border border-slate-200 dark:border-cyan-400/30 text-left shadow-lg">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Code className="w-5 h-5 text-sky-600 dark:text-cyan-400" />
-              <span className="font-mono text-xs text-slate-900 dark:text-white uppercase font-bold tracking-wider">
-                ELOANSS High-Velocity API Endpoint
-              </span>
-            </div>
-            <Badge variant="cyan">REST / JSON / 99.99% SLA</Badge>
-          </div>
-
-          <div className="rounded-2xl bg-slate-950 p-5 font-mono text-xs text-cyan-300 overflow-x-auto border border-slate-800 shadow-inner">
-            <pre className="text-slate-400">// POST https://api.eloanss-platform.in/v2/underwrite/match</pre>
-            <pre className="text-cyan-300 mt-2">
-{`{
-  "applicant_id": "EL-IND-908234",
-  "facility_requested": "home_loan",
-  "requested_amount_inr": 7500000,
-  "cibil_score": 782,
-  "employment_type": "salaried",
-  "verified_monthly_income_inr": 185000,
-  "district_code": "MH-MUM-BKC"
-}`}
-            </pre>
-            <div className="my-3 border-t border-slate-800" />
-            <pre className="text-emerald-400">
-{`// 200 OK — Algorithmic Match Response (Latency: 42ms)
-{
-  "status": "PRE_APPROVED",
-  "recommended_institution": "State Institutional Partner Syndicate",
-  "indicative_apr": "8.40%",
-  "max_sanction_inr": 8500000,
-  "assigned_distributor_node": "MUM-BKC-MASTER-01"
-}`}
-            </pre>
-          </div>
-        </div>
       </section>
 
       {/* CTA */}

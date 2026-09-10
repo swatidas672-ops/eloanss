@@ -49,7 +49,10 @@ const iconFor = (key: FundingIcon) => {
 const routeFor = (slug?: string) =>
   slug && loanProducts.some((p) => p.slug === slug) ? `/loans/${slug}` : null;
 
-const ItemList: React.FC<{ list: FundingList }> = ({ list }) => (
+const ItemList: React.FC<{
+  list: FundingList;
+  onOpenApply?: SpecializedFundingProps['onOpenApply'];
+}> = ({ list, onOpenApply }) => (
   <div>
     {list.heading && (
       <h4 className="text-xs font-mono uppercase tracking-wider text-sky-700 dark:text-cyan-300 font-bold mb-3">
@@ -85,15 +88,27 @@ const ItemList: React.FC<{ list: FundingList }> = ({ list }) => (
         const shell =
           'flex items-start gap-2.5 p-3 rounded-xl bg-white/80 dark:bg-[#0B1528]/60 border border-slate-200/90 dark:border-slate-800/80 shadow-xs backdrop-blur-md transition-colors';
 
-        // An item without a resolvable product stays a plain card rather than a
-        // link that goes nowhere.
+        const interactive = `${shell} group/item text-left w-full hover:border-sky-400/60 dark:hover:border-cyan-400/50 hover:bg-white dark:hover:bg-[#0D2138]/80 cursor-pointer`;
+
+        // Preferred: open the application form already set to this product.
+        if (onOpenApply && item.slug) {
+          return (
+            <button
+              key={item.label}
+              type="button"
+              onClick={() => onOpenApply('loan', item.slug)}
+              aria-label={`Apply for funding: ${item.label}`}
+              className={interactive}
+            >
+              {body}
+            </button>
+          );
+        }
+
+        // Without a handler, fall back to the product page; and an item with no
+        // resolvable product stays a plain card rather than a dead control.
         return to ? (
-          <Link
-            key={item.label}
-            to={to}
-            aria-label={`${item.label} - view funding options`}
-            className={`${shell} group/item hover:border-sky-400/60 dark:hover:border-cyan-400/50 hover:bg-white dark:hover:bg-[#0D2138]/80 cursor-pointer`}
-          >
+          <Link key={item.label} to={to} aria-label={`${item.label} - view funding options`} className={interactive}>
             {body}
           </Link>
         ) : (
@@ -106,7 +121,11 @@ const ItemList: React.FC<{ list: FundingList }> = ({ list }) => (
   </div>
 );
 
-const Group: React.FC<{ group: FundingGroup; flip: boolean }> = ({ group, flip }) => (
+const Group: React.FC<{
+  group: FundingGroup;
+  flip: boolean;
+  onOpenApply?: SpecializedFundingProps['onOpenApply'];
+}> = ({ group, flip, onOpenApply }) => (
   <div id={group.id} className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
     {/* Image column - order flips per group so the page alternates */}
     <div className={`lg:col-span-4 ${flip ? 'lg:order-2' : ''}`}>
@@ -138,7 +157,7 @@ const Group: React.FC<{ group: FundingGroup; flip: boolean }> = ({ group, flip }
 
       <div className="mt-6 space-y-6">
         {group.lists.map((list, i) => (
-          <ItemList key={list.heading ?? i} list={list} />
+          <ItemList key={list.heading ?? i} list={list} onOpenApply={onOpenApply} />
         ))}
       </div>
     </div>
@@ -149,7 +168,7 @@ export const SpecializedFunding: React.FC<SpecializedFundingProps> = ({ onOpenAp
   <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-16 border-t border-slate-200 dark:border-slate-800/80">
     <div className="space-y-20 sm:space-y-24">
       {fundingGroups.map((group, idx) => (
-        <Group key={group.id} group={group} flip={idx % 2 === 1} />
+        <Group key={group.id} group={group} flip={idx % 2 === 1} onOpenApply={onOpenApply} />
       ))}
     </div>
 

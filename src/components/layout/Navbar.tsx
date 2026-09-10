@@ -54,12 +54,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenApply, onOpenSearch }) => 
             : 'bg-transparent py-4 sm:py-5 border-b border-slate-200/40 dark:border-white/5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="w-full px-4 sm:px-5 lg:px-6 flex items-center justify-between gap-4">
           {/* LEFT: brand logo */}
           <Link to="/" className="flex items-center group shrink-0" aria-label="ELOANSS home">
             {/* The supplied artwork is dark type on white, so it needs a light
                 plaque to stay legible against the dark navy header. */}
-            <span className="inline-flex items-center rounded-xl bg-white px-2.5 py-1.5 shadow-xs ring-1 ring-slate-200/80 dark:ring-white/10 transition-shadow group-hover:shadow-md">
+            <span className="inline-flex items-center rounded-xl bg-white px-2 py-1.5 shadow-xs ring-1 ring-slate-200/80 dark:ring-white/10 transition-shadow group-hover:shadow-md">
               <img
                 src={eloanssLogo}
                 alt="ELOANSS - We Are Provide All Types of Loans"

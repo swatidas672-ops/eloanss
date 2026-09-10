@@ -15,7 +15,8 @@ import {
   Layers, 
   Compass,
   Calculator,
-  Gauge
+  Gauge,
+  BadgeCheck
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
@@ -175,6 +176,12 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
               <Link to="/calculator">
                 <Button variant="secondary" size="lg" leftIcon={<Calculator className="w-4 h-4 text-sky-600 dark:text-cyan-400" />}>
                   EMI Calculators
+                </Button>
+              </Link>
+
+              <Link to="/calculator#eligibility">
+                <Button variant="secondary" size="lg" leftIcon={<BadgeCheck className="w-4 h-4 text-sky-600 dark:text-cyan-400" />}>
+                  Check Eligibility
                 </Button>
               </Link>
             </div>

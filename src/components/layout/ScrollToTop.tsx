@@ -21,21 +21,32 @@ export const ScrollToTop = () => {
 
     const id = hash.slice(1);
     let attempts = 0;
-    let timer: number;
+    const timers: number[] = [];
+
+    // Instant rather than smooth: these targets sit thousands of pixels down,
+    // and lazy-loaded imagery shifting the layout mid-animation cancels a
+    // smooth scroll partway, leaving the page somewhere arbitrary.
+    const jump = (el: HTMLElement) => el.scrollIntoView({ behavior: 'auto', block: 'start' });
 
     const tryScroll = () => {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        jump(el);
+        // Re-run once the images above have loaded and pushed the target to its
+        // final offset, otherwise we land short.
+        timers.push(window.setTimeout(() => {
+          const again = document.getElementById(id);
+          if (again) jump(again);
+        }, 400));
         return;
       }
       if (attempts++ < 10) {
-        timer = window.setTimeout(tryScroll, 100);
+        timers.push(window.setTimeout(tryScroll, 100));
       }
     };
 
-    timer = window.setTimeout(tryScroll, 60);
-    return () => window.clearTimeout(timer);
+    timers.push(window.setTimeout(tryScroll, 60));
+    return () => timers.forEach((t) => window.clearTimeout(t));
   }, [pathname, hash]);
 
   return null;

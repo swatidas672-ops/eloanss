@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   CheckCircle2,
   Sprout,
@@ -7,10 +8,12 @@ import {
   Factory,
   Trees,
   Landmark,
-  ArrowRight
+  ArrowRight,
+  ChevronRight
 } from 'lucide-react';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
+import { loanProducts } from '../../data/loans';
 import {
   fundingGroups,
   type FundingGroup,
@@ -42,6 +45,10 @@ const iconFor = (key: FundingIcon) => {
   }
 };
 
+/** Only link to a slug that actually exists in the catalogue. */
+const routeFor = (slug?: string) =>
+  slug && loanProducts.some((p) => p.slug === slug) ? `/loans/${slug}` : null;
+
 const ItemList: React.FC<{ list: FundingList }> = ({ list }) => (
   <div>
     {list.heading && (
@@ -50,24 +57,51 @@ const ItemList: React.FC<{ list: FundingList }> = ({ list }) => (
       </h4>
     )}
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-      {list.items.map((item) => (
-        <div
-          key={item.label}
-          className="flex items-start gap-2.5 p-3 rounded-xl bg-white/80 dark:bg-[#0B1528]/60 border border-slate-200/90 dark:border-slate-800/80 shadow-xs backdrop-blur-md hover:border-sky-400/50 dark:hover:border-cyan-400/40 transition-colors"
-        >
-          <span className="text-sky-600 dark:text-cyan-400 shrink-0 mt-0.5" aria-hidden="true">
-            {iconFor(item.icon ?? list.icon)}
-          </span>
-          <span className="text-[13px] font-medium text-slate-800 dark:text-[#E6F1FF] leading-snug">
-            {item.label}
-            {item.qualified && (
-              <span className="text-sky-600 dark:text-cyan-400" aria-hidden="true">
-                *
-              </span>
+      {list.items.map((item) => {
+        const to = routeFor(item.slug);
+
+        const body = (
+          <>
+            <span className="text-sky-600 dark:text-cyan-400 shrink-0 mt-0.5" aria-hidden="true">
+              {iconFor(item.icon ?? list.icon)}
+            </span>
+            <span className="text-[13px] font-medium text-slate-800 dark:text-[#E6F1FF] leading-snug flex-1">
+              {item.label}
+              {item.qualified && (
+                <span className="text-sky-600 dark:text-cyan-400" aria-hidden="true">
+                  *
+                </span>
+              )}
+            </span>
+            {to && (
+              <ChevronRight
+                className="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover/item:text-sky-600 dark:group-hover/item:text-cyan-400 group-hover/item:translate-x-0.5 shrink-0 mt-0.5 transition-all"
+                aria-hidden="true"
+              />
             )}
-          </span>
-        </div>
-      ))}
+          </>
+        );
+
+        const shell =
+          'flex items-start gap-2.5 p-3 rounded-xl bg-white/80 dark:bg-[#0B1528]/60 border border-slate-200/90 dark:border-slate-800/80 shadow-xs backdrop-blur-md transition-colors';
+
+        // An item without a resolvable product stays a plain card rather than a
+        // link that goes nowhere.
+        return to ? (
+          <Link
+            key={item.label}
+            to={to}
+            aria-label={`${item.label} - view funding options`}
+            className={`${shell} group/item hover:border-sky-400/60 dark:hover:border-cyan-400/50 hover:bg-white dark:hover:bg-[#0D2138]/80 cursor-pointer`}
+          >
+            {body}
+          </Link>
+        ) : (
+          <div key={item.label} className={shell}>
+            {body}
+          </div>
+        );
+      })}
     </div>
   </div>
 );

@@ -80,11 +80,11 @@ export const DistributorNetwork: React.FC = () => {
         ]}
         primaryAction={{
           label: 'Become a Partner',
-          href: '#join'
+          href: '/distributors#join'
         }}
         secondaryAction={{
           label: 'View National Map',
-          href: '#interactive-map'
+          href: '/distributors#interactive-map'
         }}
       />
 

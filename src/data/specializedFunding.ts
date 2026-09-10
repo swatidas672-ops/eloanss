@@ -15,6 +15,8 @@ export type FundingIcon =
 
 export interface FundingItem {
   label: string;
+  /** Loan product slug this item opens. Resolved against loans.ts at render. */
+  slug?: string;
   icon?: FundingIcon;
   /** Adds an asterisk tied to the section footnote. */
   qualified?: boolean;
@@ -53,23 +55,23 @@ export const fundingGroups: FundingGroup[] = [
       {
         icon: 'check',
         items: [
-          { label: 'Jewellers – Excluding Bullion Traders' },
-          { label: 'Fuel Stations & Gas Agencies' },
-          { label: 'Transport, Logistics & Shipping' },
-          { label: 'Government & Civil Contractors' },
-          { label: 'EPC & Telecom Contractors' },
-          { label: 'Infrastructure & Project Businesses' },
-          { label: 'Poultry, Dairy & Seafood Businesses' },
-          { label: 'Agriculture & Agro-Based Businesses' },
-          { label: 'Rice, Dal & Cotton Mills' },
-          { label: 'Agro Processing Units' },
-          { label: 'Wholesale & Retail Businesses' },
-          { label: 'Iron & Steel / Coal-Linked Industries – Non-Mining' },
-          { label: 'Heavy Equipment Dealers & Manufacturers' },
-          { label: 'Warehousing & Cold Storage' },
-          { label: 'Doctors, Clinics & Healthcare Businesses' },
-          { label: 'Hotels & Restaurants' },
-          { label: 'Eligible Hospitality Businesses' }
+          { label: 'Jewellers – Excluding Bullion Traders', slug: 'business-loan' },
+          { label: 'Fuel Stations & Gas Agencies', slug: 'business-loan' },
+          { label: 'Transport, Logistics & Shipping', slug: 'commercial-vehicle-loan' },
+          { label: 'Government & Civil Contractors', slug: 'project-loan' },
+          { label: 'EPC & Telecom Contractors', slug: 'project-loan' },
+          { label: 'Infrastructure & Project Businesses', slug: 'project-loan' },
+          { label: 'Poultry, Dairy & Seafood Businesses', slug: 'business-loan' },
+          { label: 'Agriculture & Agro-Based Businesses', slug: 'business-loan' },
+          { label: 'Rice, Dal & Cotton Mills', slug: 'business-loan' },
+          { label: 'Agro Processing Units', slug: 'business-loan' },
+          { label: 'Wholesale & Retail Businesses', slug: 'business-loan' },
+          { label: 'Iron & Steel / Coal-Linked Industries – Non-Mining', slug: 'business-loan' },
+          { label: 'Heavy Equipment Dealers & Manufacturers', slug: 'heavy-commercial-vehicle-loan' },
+          { label: 'Warehousing & Cold Storage', slug: 'project-loan' },
+          { label: 'Doctors, Clinics & Healthcare Businesses', slug: 'business-loan' },
+          { label: 'Hotels & Restaurants', slug: 'business-loan' },
+          { label: 'Eligible Hospitality Businesses', slug: 'business-loan' }
         ]
       }
     ]
@@ -89,14 +91,14 @@ export const fundingGroups: FundingGroup[] = [
       {
         icon: 'sprout',
         items: [
-          { label: 'Agriculture Finance' },
-          { label: 'Crop Loans' },
-          { label: 'Agriculture LAP' },
-          { label: 'Warehouse Stock OD' },
-          { label: 'Agro Processing Finance' },
-          { label: 'Poultry & Dairy Finance' },
-          { label: 'Rice / Dal / Cotton Mill Finance' },
-          { label: 'Rural Business Funding' }
+          { label: 'Agriculture Finance', slug: 'business-loan' },
+          { label: 'Crop Loans', slug: 'business-loan' },
+          { label: 'Agriculture LAP', slug: 'mortgage-loan' },
+          { label: 'Warehouse Stock OD', slug: 'od-loan' },
+          { label: 'Agro Processing Finance', slug: 'business-loan' },
+          { label: 'Poultry & Dairy Finance', slug: 'business-loan' },
+          { label: 'Rice / Dal / Cotton Mill Finance', slug: 'business-loan' },
+          { label: 'Rural Business Funding', slug: 'business-loan' }
         ]
       }
     ]
@@ -117,23 +119,23 @@ export const fundingGroups: FundingGroup[] = [
         heading: 'Property We Fund Against',
         icon: 'home',
         items: [
-          { label: 'Residential Property', icon: 'home' },
-          { label: 'Commercial Property', icon: 'building' },
-          { label: 'Industrial Property / Factory', icon: 'factory' },
-          { label: 'Vacant Land / Open Plots', icon: 'land' },
-          { label: 'Rental Income-Generating Properties', icon: 'rental' }
+          { label: 'Residential Property', slug: 'mortgage-loan', icon: 'home' },
+          { label: 'Commercial Property', slug: 'mortgage-loan', icon: 'building' },
+          { label: 'Industrial Property / Factory', slug: 'mortgage-loan', icon: 'factory' },
+          { label: 'Vacant Land / Open Plots', slug: 'open-plot-loan', icon: 'land' },
+          { label: 'Rental Income-Generating Properties', slug: 'mortgage-loan', icon: 'rental' }
         ]
       },
       {
         heading: 'Facilities Available',
         icon: 'check',
         items: [
-          { label: 'LAP for Salaried & Business Customers' },
-          { label: 'LAP Balance Transfer' },
-          { label: 'LAP Top-Up' },
-          { label: 'Lease Rental Discounting (LRD)' },
-          { label: 'OD/CC Enhancement Against Property' },
-          { label: 'Competitive LTV Structure', qualified: true }
+          { label: 'LAP for Salaried & Business Customers', slug: 'mortgage-loan' },
+          { label: 'LAP Balance Transfer', slug: 'mortgage-loan' },
+          { label: 'LAP Top-Up', slug: 'mortgage-loan' },
+          { label: 'Lease Rental Discounting (LRD)', slug: 'mortgage-loan' },
+          { label: 'OD/CC Enhancement Against Property', slug: 'od-loan' },
+          { label: 'Competitive LTV Structure', slug: 'mortgage-loan', qualified: true }
         ]
       }
     ]

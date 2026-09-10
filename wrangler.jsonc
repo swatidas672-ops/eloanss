@@ -6,9 +6,14 @@
   // `/*  /index.html  200` is rejected as an infinite loop; SPA routing is
   // configured here instead.
   "name": "e-loanss",
+  // Worker entry: serves the SPA from ASSETS and handles /api/chat, which
+  // proxies the AI assistant to Gemini so the API key stays server-side.
+  "main": "worker/index.ts",
   "compatibility_date": "2026-09-09",
   "assets": {
     "directory": "./dist",
+    // Named binding so the Worker can hand non-API requests back to the assets.
+    "binding": "ASSETS",
     // Serves index.html (HTTP 200) for any path that is not a real file, so
     // React Router can handle /loans, /about and the rest on a direct visit or
     // a refresh. Replaces the _redirects rule.

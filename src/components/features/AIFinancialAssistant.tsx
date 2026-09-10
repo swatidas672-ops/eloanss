@@ -58,26 +58,49 @@ export const AIFinancialAssistant: React.FC<AIFinancialAssistantProps> = ({
       timestamp: 'Just now'
     };
 
+    const history = messages
+      .slice(-6)
+      .map((m) => ({ role: m.sender === 'user' ? 'user' : 'assistant', text: m.text }));
+
     setMessages((prev) => [...prev, userMsg]);
     if (!textToSend) setInputVal('');
     setIsTyping(true);
 
-    window.setTimeout(() => {
-      const reply = answerQuestion(query);
+    // The catalogue engine still supplies the action chips and follow-ups, so
+    // navigation and Apply keep working whichever source answers.
+    const local = answerQuestion(query);
+
+    const post = async (): Promise<string | null> => {
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ message: query, history })
+        });
+        if (!res.ok) return null;
+        const data = (await res.json()) as { text?: string };
+        return data.text?.trim() || null;
+      } catch {
+        // No API route in local dev, or the model is unreachable.
+        return null;
+      }
+    };
+
+    post().then((remote) => {
       const id = `assistant-${Date.now()}`;
       setMessages((prev) => [
         ...prev,
         {
           id,
           sender: 'assistant',
-          text: reply.text,
+          text: remote ?? local.text,
           timestamp: 'Just now',
-          suggestions: reply.suggestions
+          suggestions: local.suggestions
         }
       ]);
-      setActionsByMsg((prev) => ({ ...prev, [id]: reply.actions }));
+      setActionsByMsg((prev) => ({ ...prev, [id]: local.actions }));
       setIsTyping(false);
-    }, 500);
+    });
   };
 
   // Action chips navigate or open the apply modal instead of re-querying.

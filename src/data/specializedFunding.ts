@@ -127,15 +127,17 @@ export const fundingGroups: FundingGroup[] = [
         ]
       },
       {
+        // Descriptive facilities rather than products to apply for. No slug
+        // means the component renders them as plain, non-clickable cards.
         heading: 'Facilities Available',
         icon: 'check',
         items: [
-          { label: 'LAP for Salaried & Business Customers', slug: 'mortgage-loan' },
-          { label: 'LAP Balance Transfer', slug: 'mortgage-loan' },
-          { label: 'LAP Top-Up', slug: 'mortgage-loan' },
-          { label: 'Lease Rental Discounting (LRD)', slug: 'mortgage-loan' },
-          { label: 'OD/CC Enhancement Against Property', slug: 'od-loan' },
-          { label: 'Competitive LTV Structure', slug: 'mortgage-loan', qualified: true }
+          { label: 'LAP for Salaried & Business Customers' },
+          { label: 'LAP Balance Transfer' },
+          { label: 'LAP Top-Up' },
+          { label: 'Lease Rental Discounting (LRD)' },
+          { label: 'OD/CC Enhancement Against Property' },
+          { label: 'Competitive LTV Structure', qualified: true }
         ]
       }
     ]

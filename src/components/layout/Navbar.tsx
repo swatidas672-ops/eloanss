@@ -17,7 +17,8 @@ import {
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { mainNavItems } from '../../data/navigation';
-import eloanssLogo from '../../assets/brand/eloanss-logo.png';
+import eloanssLogoLight from '../../assets/brand/eloanss-logo-light.png';
+import eloanssLogoDark from '../../assets/brand/eloanss-logo-dark.png';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -57,15 +58,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenApply, onOpenSearch }) => 
         <div className="w-full px-4 sm:px-5 lg:px-6 flex items-center justify-between gap-4">
           {/* LEFT: brand logo */}
           <Link to="/" className="flex items-center group shrink-0" aria-label="ELOANSS home">
-            {/* The supplied artwork is dark type on white, so it needs a light
-                plaque to stay legible against the dark navy header. */}
-            <span className="inline-flex items-center rounded-xl bg-white px-2 py-1.5 shadow-xs ring-1 ring-slate-200/80 dark:ring-white/10 transition-shadow group-hover:shadow-md">
+<>
+              {/* The artwork is dark ink on white, so a transparent light
+                  version plus a lightened dark version is used instead of
+                  sitting the original on a white plaque. */}
               <img
-                src={eloanssLogo}
+                src={eloanssLogoLight}
                 alt="ELOANSS - We Are Provide All Types of Loans"
-                className="h-8 sm:h-9 w-auto object-contain"
+                className="h-9 sm:h-10 w-auto object-contain dark:hidden"
               />
-            </span>
+              <img
+                src={eloanssLogoDark}
+                alt=""
+                aria-hidden="true"
+                className="hidden dark:block h-9 sm:h-10 w-auto object-contain"
+              />
+            </>
           </Link>
 
           {/* CENTER: Main Desktop Navigation */}

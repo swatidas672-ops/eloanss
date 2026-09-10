@@ -12,7 +12,8 @@ import {
   Calculator
 } from 'lucide-react';
 import { footerLoanLinks, footerInsuranceLinks, footerQuickLinks } from '../../data/navigation';
-import eloanssLogo from '../../assets/brand/eloanss-logo.png';
+import eloanssLogoLight from '../../assets/brand/eloanss-logo-light.png';
+import eloanssLogoDark from '../../assets/brand/eloanss-logo-dark.png';
 
 export const Footer: React.FC = () => {
   return (
@@ -27,13 +28,22 @@ export const Footer: React.FC = () => {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="inline-flex group" aria-label="ELOANSS home">
-              <span className="inline-flex items-center rounded-xl bg-white px-3 py-2 shadow-xs ring-1 ring-slate-200/80 dark:ring-white/10 transition-shadow group-hover:shadow-md">
-                <img
-                  src={eloanssLogo}
-                  alt="ELOANSS - We Are Provide All Types of Loans"
-                  className="h-9 w-auto object-contain"
-                />
-              </span>
+<>
+              {/* The artwork is dark ink on white, so a transparent light
+                  version plus a lightened dark version is used instead of
+                  sitting the original on a white plaque. */}
+              <img
+                src={eloanssLogoLight}
+                alt="ELOANSS - We Are Provide All Types of Loans"
+                className="h-10 w-auto object-contain dark:hidden"
+              />
+              <img
+                src={eloanssLogoDark}
+                alt=""
+                aria-hidden="true"
+                className="hidden dark:block h-10 w-auto object-contain"
+              />
+            </>
             </Link>
 
             <p className="text-sm text-slate-600 dark:text-[#A9BDD1] leading-relaxed max-w-sm">

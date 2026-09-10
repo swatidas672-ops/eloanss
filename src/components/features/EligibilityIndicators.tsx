@@ -15,6 +15,8 @@ import { Button } from '../ui/Button';
 
 interface EligibilityIndicatorsProps {
   onOpenApply?: (type: 'loan' | 'insurance', slug?: string) => void;
+  /** Drops the section heading and top padding for use inside a modal. */
+  compact?: boolean;
 }
 
 interface Indicator {
@@ -64,8 +66,12 @@ const indicators: Indicator[] = [
   }
 ];
 
-export const EligibilityIndicators: React.FC<EligibilityIndicatorsProps> = ({ onOpenApply }) => (
-  <section id="eligibility" className="scroll-mt-24 pt-20 sm:pt-24">
+export const EligibilityIndicators: React.FC<EligibilityIndicatorsProps> = ({
+  onOpenApply,
+  compact = false
+}) => (
+  <section id={compact ? undefined : 'eligibility'} className={compact ? '' : 'scroll-mt-24 pt-20 sm:pt-24'}>
+    {!compact && (
     <SectionHeading
       badge="ELIGIBILITY INDICATORS"
       title="What It Takes"
@@ -73,6 +79,7 @@ export const EligibilityIndicators: React.FC<EligibilityIndicatorsProps> = ({ on
       description="Indicative thresholds we underwrite against across our lender panel. Meeting them does not guarantee sanction, but it is the band most approved applications fall within."
       align="center"
     />
+    )}
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 sm:gap-6">
       {indicators.map((item) => (

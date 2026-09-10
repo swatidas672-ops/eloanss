@@ -29,6 +29,7 @@ import { IndiaNetworkVisual } from '../components/features/IndiaNetworkVisual';
 import { VideoModal } from '../components/features/VideoModal';
 import { Modal } from '../components/ui/Modal';
 import { CreditScoreChecker } from '../components/features/CreditScoreChecker';
+import { EligibilityIndicators } from '../components/features/EligibilityIndicators';
 import { LiveMarketTicker } from '../components/features/LiveMarketTicker';
 import { EMICalculatorWidget } from '../components/features/EMICalculatorWidget';
 import { LendingPartners } from '../components/features/LendingPartners';
@@ -47,6 +48,8 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) => {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [scoreCheckerOpen, setScoreCheckerOpen] = useState(false);
+  const [emiModalOpen, setEmiModalOpen] = useState(false);
+  const [eligibilityOpen, setEligibilityOpen] = useState(false);
 
   // Trust features
   const trustFeatures = [
@@ -146,17 +149,23 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
                 Watch How It Works
               </Button>
 
-              <Link to="/calculator">
-                <Button variant="secondary" size="lg" leftIcon={<Calculator className="w-4 h-4 text-sky-600 dark:text-cyan-400" />}>
-                  EMI Calculators
-                </Button>
-              </Link>
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={() => setEmiModalOpen(true)}
+                leftIcon={<Calculator className="w-4 h-4 text-sky-600 dark:text-cyan-400" />}
+              >
+                EMI Calculators
+              </Button>
 
-              <Link to="/calculator#eligibility">
-                <Button variant="secondary" size="lg" leftIcon={<BadgeCheck className="w-4 h-4 text-sky-600 dark:text-cyan-400" />}>
-                  Check Eligibility
-                </Button>
-              </Link>
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={() => setEligibilityOpen(true)}
+                leftIcon={<BadgeCheck className="w-4 h-4 text-sky-600 dark:text-cyan-400" />}
+              >
+                Check Eligibility
+              </Button>
             </div>
 
             {/* Quick Live Telemetry Indicator */}
@@ -264,7 +273,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
 
         {/* Live Interactive Loan Calculator Simulation */}
         <div className="mt-16">
-          <EMICalculatorWidget onOpenApply={onOpenApply} />
+          <EMICalculatorWidget onApply={(slug) => onOpenApply('loan', slug)} />
         </div>
 
         {/* Entry point to the full credit score checker */}
@@ -525,6 +534,39 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
 
       {/* Interactive Video Modal */}
       <VideoModal isOpen={videoModalOpen} onClose={() => setVideoModalOpen(false)} />
+
+      {/* EMI calculator, run without leaving the page */}
+      <Modal
+        isOpen={emiModalOpen}
+        onClose={() => setEmiModalOpen(false)}
+        title="EMI Calculator"
+        subtitle="Model your monthly instalment, total interest and payable amount."
+        maxWidth="4xl"
+      >
+        <EMICalculatorWidget
+          onApply={(slug) => {
+            setEmiModalOpen(false);
+            onOpenApply('loan', slug);
+          }}
+        />
+      </Modal>
+
+      {/* Eligibility indicators, run without leaving the page */}
+      <Modal
+        isOpen={eligibilityOpen}
+        onClose={() => setEligibilityOpen(false)}
+        title="Eligibility Indicators"
+        subtitle="The bands most approved applications fall within."
+        maxWidth="4xl"
+      >
+        <EligibilityIndicators
+          compact
+          onOpenApply={(type, slug) => {
+            setEligibilityOpen(false);
+            onOpenApply(type, slug);
+          }}
+        />
+      </Modal>
 
       {/* Credit score checker, run without leaving the page */}
       <Modal

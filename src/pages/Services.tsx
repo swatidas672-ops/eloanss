@@ -4,11 +4,7 @@ import { heroImages } from '../data/heroImages';
 import { Button } from '../components/ui/Button';
 import { PageHero } from '../components/layout/PageHero';
 import { 
-  Cpu,  
-  ShieldCheck, 
   ArrowRight, 
-  Zap,  
-  Server, 
   Calculator
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -35,12 +31,6 @@ export const Services: React.FC = () => {
             subtitle: heroImages.services.floatingSubtitle
           }
         }}
-        stats={[
-          { label: 'API Processing Speed', value: '42ms Latency', subtext: 'Sub-second underwriting', icon: <Zap className="w-4 h-4" /> },
-          { label: 'Integrated Institutions', value: '50+ Banking APIs', subtext: 'Seamless credit conduits', icon: <Cpu className="w-4 h-4" /> },
-          { label: 'Uptime SLA', value: '99.99% Availability', subtext: 'Multi-region redundancy', icon: <Server className="w-4 h-4" /> },
-          { label: 'Security Standard', value: 'Mutual TLS / OAuth2', subtext: 'Bank-grade protocol', icon: <ShieldCheck className="w-4 h-4" /> }
-        ]}
         primaryAction={{
           label: 'Request API Sandbox',
           href: '/contact'

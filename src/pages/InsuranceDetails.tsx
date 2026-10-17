@@ -186,7 +186,7 @@ export const InsuranceDetails: React.FC<InsuranceDetailsProps> = ({ onOpenApply 
               onClick={() => onOpenApply('insurance', product.slug)}
               rightIcon={<ArrowRight className="w-4 h-4" />}
             >
-              Get Custom Quote Now →
+              Get Custom Quote Now
             </Button>
             <Link to="/calculator">
               <Button variant="secondary" size="lg">

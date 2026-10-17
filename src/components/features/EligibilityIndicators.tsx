@@ -110,16 +110,15 @@ export const EligibilityIndicators: React.FC<EligibilityIndicatorsProps> = ({
     </div>
 
     <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-      {onOpenApply && (
+      <Link to="/eligibility">
         <Button
           variant="glow"
           size="lg"
-          onClick={() => onOpenApply('loan')}
           rightIcon={<ArrowRight className="w-4 h-4" />}
         >
           Check My Eligibility
         </Button>
-      )}
+      </Link>
       <Link to="/distributors">
         <Button
           variant="secondary"

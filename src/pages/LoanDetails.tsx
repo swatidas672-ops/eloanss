@@ -363,7 +363,7 @@ export const LoanDetails: React.FC<LoanDetailsProps> = ({ onOpenApply }) => {
               onClick={() => onOpenApply('loan', product.slug)}
               rightIcon={<ArrowRight className="w-4 h-4" />}
             >
-              Apply Online Now →
+              Apply Online Now
             </Button>
             <Link to="/distributors">
               <Button variant="secondary" size="lg">

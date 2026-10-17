@@ -395,7 +395,7 @@ export const Loans: React.FC<LoansPageProps> = ({ onOpenApply }) => {
               onClick={() => onOpenApply('loan')}
               rightIcon={<ArrowRight className="w-4 h-4" />}
             >
-              Start Online Application Now →
+              Start Online Application Now
             </Button>
             <Link to="/calculator">
               <Button variant="secondary" size="lg" leftIcon={<Calculator className="w-4 h-4 text-cyan-400" />}>

@@ -27,14 +27,14 @@ export const IndiaNetworkVisual: React.FC<{ className?: string }> = ({ className
   const [activeHub, setActiveHub] = useState<HubNode>(networkNodes[4]); // Default Mumbai BKC
 
   return (
-    <div className={`relative rounded-2xl bg-white/90 dark:bg-[#06111F]/90 border border-slate-200 dark:border-[#0EA5FF]/25 p-6 backdrop-blur-2xl overflow-hidden shadow-lg ${className}`}>
+    <div className={`relative rounded-2xl bg-white/90 dark:bg-[#06111F]/90 border border-slate-200 dark:border-[#0EA5FF]/25 p-4 sm:p-6 backdrop-blur-2xl overflow-hidden shadow-lg ${className}`}>
       {/* Background cyber grid & glow */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-25 pointer-events-none" />
       <div className="absolute -top-24 -left-24 w-72 h-72 bg-sky-500/10 dark:bg-[#0EA5FF]/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-cyan-500/10 dark:bg-cyan-400/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header bar */}
-      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
+      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-sky-500 dark:bg-cyan-400 animate-ping" />
@@ -47,14 +47,17 @@ export const IndiaNetworkVisual: React.FC<{ className?: string }> = ({ className
           </p>
         </div>
 
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-[#081A2D] border border-sky-500/20 dark:border-cyan-500/30 text-sky-700 dark:text-cyan-300 text-xs font-mono font-semibold">
+        <div className="self-start flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-[#081A2D] border border-sky-500/20 dark:border-cyan-500/30 text-sky-700 dark:text-cyan-300 text-xs font-mono font-semibold">
           <Activity className="w-3.5 h-3.5 animate-pulse" />
           <span>NETWORK: ACTIVE (99.98%)</span>
         </div>
       </div>
 
+      {/* Canvas + telemetry card share this box so the card can float over
+          the map from sm up, while stacking beneath it on a phone. */}
+      <div className="relative">
       {/* Interactive Abstract Network Canvas */}
-      <div className="relative h-80 sm:h-96 w-full rounded-xl bg-slate-50 dark:bg-[#020817]/80 border border-slate-200 dark:border-slate-800/80 overflow-hidden flex items-center justify-center">
+      <div className="relative h-72 sm:h-96 w-full rounded-xl bg-slate-50 dark:bg-[#020817]/80 border border-slate-200 dark:border-slate-800/80 overflow-hidden flex items-center justify-center">
         {/* Abstract connection lines */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-60 dark:opacity-40">
           <defs>
@@ -108,7 +111,9 @@ export const IndiaNetworkVisual: React.FC<{ className?: string }> = ({ className
 
               {/* Micro label */}
               <div
-                className={`absolute left-5 top-1/2 -translate-y-1/2 whitespace-nowrap text-[10px] font-mono transition-all pointer-events-none ${
+                className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-[10px] font-mono transition-all pointer-events-none ${
+                  node.x > 58 ? 'right-5 text-right' : 'left-5'
+                } ${
                   isSelected
                     ? 'text-sky-700 dark:text-cyan-300 font-bold bg-white dark:bg-[#06111F]/90 px-2 py-0.5 rounded border border-sky-400/40 dark:border-cyan-400/40 shadow-lg'
                     : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white hidden sm:block'
@@ -119,22 +124,23 @@ export const IndiaNetworkVisual: React.FC<{ className?: string }> = ({ className
             </div>
           );
         })}
+      </div>
 
-        {/* Floating Active Node Telemetry Card */}
-        <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-xs p-3.5 rounded-xl bg-white/95 dark:bg-[#081A2D]/90 border border-slate-200 dark:border-cyan-400/40 backdrop-blur-xl shadow-xl z-30">
-          <div className="flex items-center justify-between text-xs">
-            <span className="font-mono text-sky-600 dark:text-cyan-400 font-bold">{activeHub.zone}</span>
-            <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              Verified
-            </span>
-          </div>
-          <h5 className="text-sm font-bold text-slate-900 dark:text-white font-display mt-1">{activeHub.name}</h5>
-          <div className="mt-2 flex items-center justify-between text-xs text-slate-600 dark:text-slate-300 pt-2 border-t border-slate-200 dark:border-slate-700/60">
-            <span>Accredited Distributors:</span>
-            <span className="font-bold text-sky-600 dark:text-cyan-300">{activeHub.activePartners}+ Certified</span>
-          </div>
+      {/* Floating Active Node Telemetry Card */}
+      <div className="mt-3 sm:mt-0 sm:absolute sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-xs p-3.5 rounded-xl bg-white/95 dark:bg-[#081A2D]/90 border border-slate-200 dark:border-cyan-400/40 backdrop-blur-xl shadow-xl z-30">
+        <div className="flex items-center justify-between text-xs">
+          <span className="font-mono text-sky-600 dark:text-cyan-400 font-bold">{activeHub.zone}</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            Verified
+          </span>
         </div>
+        <h5 className="text-sm font-bold text-slate-900 dark:text-white font-display mt-1">{activeHub.name}</h5>
+        <div className="mt-2 flex items-center justify-between text-xs text-slate-600 dark:text-slate-300 pt-2 border-t border-slate-200 dark:border-slate-700/60">
+          <span>Accredited Distributors:</span>
+          <span className="font-bold text-sky-600 dark:text-cyan-300">{activeHub.activePartners}+ Certified</span>
+        </div>
+      </div>
       </div>
     </div>
   );

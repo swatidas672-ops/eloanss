@@ -64,7 +64,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
     >
       <div className="space-y-6">
         {/* Futuristic Video Simulation Container */}
-        <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#020817] border border-[#0EA5FF]/30 group shadow-2xl flex flex-col justify-between p-6">
+        <div className="relative rounded-2xl overflow-hidden bg-[#020817] border border-[#0EA5FF]/30 group shadow-2xl flex flex-col justify-between gap-4 p-4 sm:p-6 sm:aspect-video sm:gap-0">
           {/* Background Animated Grids & Atmospheric lights */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0EA5FF]/20 via-[#06111F]/80 to-[#020817] pointer-events-none" />
           <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
@@ -75,30 +75,30 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               <span className="text-cyan-400 font-semibold uppercase">SYSTEM STATUS: OPTIMAL</span>
             </div>
-            <div className="text-slate-400">
+            <div className="hidden sm:block text-slate-400">
               BUILD: v2035.4.1 // NEURAL ENGINE
             </div>
           </div>
 
           {/* Central Active Simulation Card */}
-          <div className="relative z-10 my-auto text-center max-w-lg mx-auto py-4">
-            <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-[#081A2D]/80 border border-cyan-400/40 text-cyan-300 mb-3 shadow-[0_0_25px_rgba(34,211,238,0.3)]">
+          <div className="relative z-10 my-auto text-center max-w-lg mx-auto py-1 sm:py-4">
+            <div className="inline-flex items-center justify-center p-2.5 sm:p-3 rounded-2xl bg-[#081A2D]/80 border border-cyan-400/40 text-cyan-300 mb-2 sm:mb-3 shadow-[0_0_25px_rgba(34,211,238,0.3)]">
               {demoSteps[activeStep].icon}
             </div>
-            <h4 className="text-xl sm:text-2xl font-bold text-white font-display">
+            <h4 className="text-base sm:text-2xl font-bold text-white font-display leading-snug">
               {demoSteps[activeStep].title}
             </h4>
-            <p className="text-xs sm:text-sm text-[#A9BDD1] mt-2 leading-relaxed">
+            <p className="text-[11px] sm:text-sm text-[#A9BDD1] mt-1.5 sm:mt-2 leading-relaxed line-clamp-4 sm:line-clamp-none">
               {demoSteps[activeStep].desc}
             </p>
-            <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/20 text-sky-300 text-xs font-mono">
+            <div className="mt-3 sm:mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/20 text-sky-300 text-[11px] sm:text-xs font-mono">
               <Sparkles className="w-3.5 h-3.5" />
               {demoSteps[activeStep].metric}
             </div>
           </div>
 
           {/* Bottom Controls / Progress */}
-          <div className="relative z-10 flex items-center justify-between pt-2 border-t border-slate-800">
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 sm:pt-2 border-t border-slate-800">
             <div className="flex gap-1.5">
               {demoSteps.map((_, idx) => (
                 <button
@@ -125,7 +125,8 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
                 onClick={() => setActiveStep((prev) => (prev < demoSteps.length - 1 ? prev + 1 : 0))}
                 rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
               >
-                Next Architecture Step
+                <span className="sm:hidden">Next Step</span>
+                <span className="hidden sm:inline">Next Architecture Step</span>
               </Button>
             </div>
           </div>
@@ -144,7 +145,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
               }`}
             >
               <div className="text-[10px] font-mono text-cyan-400 mb-1">0{idx + 1}</div>
-              <div className="text-xs font-semibold text-white line-clamp-1">{step.title.split('.')[1]}</div>
+              <div className="text-xs font-semibold text-white leading-snug">{step.title.split('.')[1].trim()}</div>
               <div className="text-[11px] text-[#A9BDD1] mt-0.5">{step.metric}</div>
             </button>
           ))}

@@ -29,7 +29,6 @@ import { IndiaNetworkVisual } from '../components/features/IndiaNetworkVisual';
 import { VideoModal } from '../components/features/VideoModal';
 import { Modal } from '../components/ui/Modal';
 import { CreditScoreChecker } from '../components/features/CreditScoreChecker';
-import { EligibilityIndicators } from '../components/features/EligibilityIndicators';
 import { LiveMarketTicker } from '../components/features/LiveMarketTicker';
 import { EMICalculatorWidget } from '../components/features/EMICalculatorWidget';
 import { LendingPartners } from '../components/features/LendingPartners';
@@ -49,7 +48,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [scoreCheckerOpen, setScoreCheckerOpen] = useState(false);
   const [emiModalOpen, setEmiModalOpen] = useState(false);
-  const [eligibilityOpen, setEligibilityOpen] = useState(false);
 
   // Trust features
   const trustFeatures = [
@@ -158,14 +156,15 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
                 EMI Calculators
               </Button>
 
-              <Button
-                variant="secondary"
-                size="lg"
-                onClick={() => setEligibilityOpen(true)}
-                leftIcon={<BadgeCheck className="w-4 h-4 text-sky-600 dark:text-cyan-400" />}
-              >
-                Check Eligibility
-              </Button>
+              <Link to="/eligibility">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  leftIcon={<BadgeCheck className="w-4 h-4 text-sky-600 dark:text-cyan-400" />}
+                >
+                  Check Eligibility
+                </Button>
+              </Link>
             </div>
 
             {/* Quick Live Telemetry Indicator */}
@@ -519,7 +518,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
             <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link to="/about">
                 <Button variant="glow" size="lg" rightIcon={<ArrowRight className="w-4 h-4" />}>
-                  Explore Our Vision →
+                  Explore Our Vision
                 </Button>
               </Link>
               <Link to="/global-business">
@@ -547,23 +546,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenApply, onOpenPartnerModal }) =
           onApply={(slug) => {
             setEmiModalOpen(false);
             onOpenApply('loan', slug);
-          }}
-        />
-      </Modal>
-
-      {/* Eligibility indicators, run without leaving the page */}
-      <Modal
-        isOpen={eligibilityOpen}
-        onClose={() => setEligibilityOpen(false)}
-        title="Eligibility Indicators"
-        subtitle="The bands most approved applications fall within."
-        maxWidth="4xl"
-      >
-        <EligibilityIndicators
-          compact
-          onOpenApply={(type, slug) => {
-            setEligibilityOpen(false);
-            onOpenApply(type, slug);
           }}
         />
       </Modal>

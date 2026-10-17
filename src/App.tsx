@@ -17,6 +17,7 @@ import { Insurance } from './pages/Insurance';
 import { InsuranceDetails } from './pages/InsuranceDetails';
 import { Invest } from './pages/Invest';
 import { CalculatorPage } from './pages/Calculator';
+import { EligibilityPage } from './pages/Eligibility';
 import { GlobalBusiness } from './pages/GlobalBusiness';
 import { DistributorNetwork } from './pages/DistributorNetwork';
 import { About } from './pages/About';
@@ -91,6 +92,10 @@ export default function App() {
               <Route
                 path="/calculator"
                 element={<CalculatorPage onOpenApply={handleOpenApply} />}
+              />
+              <Route
+                path="/eligibility"
+                element={<EligibilityPage onOpenApply={handleOpenApply} />}
               />
               <Route
                 path="/global-business"
